@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="06966805d89443c49dd2b794828585dc" Name="Diagram1" ZoomLevel="70">
+        <EntityTypeShape EntityType="BakeryModel.Ingredients" Width="2.125" PointX="25.875" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BakeryModel.OrderedProducts" Width="2.125" PointX="29" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BakeryModel.Orders" Width="2.125" PointX="31.125" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BakeryModel.Products" Width="2.125" PointX="26.375" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BakeryModel.ProductСomposition" Width="2.125" PointX="30.625" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BakeryModel.Roles" Width="2.125" PointX="30.875" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BakeryModel.suppliedIngredients" Width="2.125" PointX="28.125" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BakeryModel.Suppliers" Width="2.125" PointX="25.625" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BakeryModel.sysdiagrams" Width="2.125" PointX="34" PointY="13" IsExpanded="true" />
+        <AssociationConnector Association="BakeryModel.FK__ProductСo__ingre__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="BakeryModel.FK__suppliedI__ingre__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="BakeryModel.FK__OrderedPr__order__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="BakeryModel.FK__OrderedPr__produ__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="BakeryModel.FK__ProductСo__produ__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="BakeryModel.FK__suppliedI__suppl__534D60F1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,9 @@
+﻿<Application x:Class="БД_АВТОРИЗАЦИЯ.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:БД_АВТОРИЗАЦИЯ"
+             StartupUri="Авторизация.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
