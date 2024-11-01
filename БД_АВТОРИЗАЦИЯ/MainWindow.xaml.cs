@@ -24,10 +24,6 @@ namespace БД_АВТОРИЗАЦИЯ
         {
             InitializeComponent();
         }
-
-        private void MainFrame_ContentRendered(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

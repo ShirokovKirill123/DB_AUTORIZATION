@@ -15,10 +15,10 @@
         <!-- StackPanel для элементов авторизации -->
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="200">
             <TextBlock Text="Логин:" Margin="0,0,0,5" FontSize="20" HorizontalAlignment="Center"/>
-            <TextBox x:Name="LoginTextBox" Height="30" Width="200" Margin="0,0,0,10"/>
+            <TextBox x:Name="LoginTextBox" Height="23" Width="200" Margin="0,0,0,10"/>
 
             <TextBlock Text="Пароль:" Margin="0,0,0,5" FontSize="20" HorizontalAlignment="Center"/>
-            <PasswordBox x:Name="PasswordBox" Height="30" Width="200" Margin="0,0,0,10"/>
+            <PasswordBox x:Name="PasswordBox" Height="23" Width="200" Margin="0,0,0,10"/>
 
             <Button Content="Войти" Height="50" Width="200" Margin="0,30,0,10" Click="LoginButton_Click"/>
         </StackPanel>
