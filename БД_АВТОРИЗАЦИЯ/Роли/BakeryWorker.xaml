@@ -9,7 +9,7 @@
       Title="BakeryWorker">
 
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="200">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="458">
             <TextBlock Text="Добро пожаловать Пекарь!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
         </StackPanel>
     </Grid>

@@ -9,7 +9,7 @@
       Title="PurchasingManager">
 
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="200">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="420">
             <TextBlock Text="Добро пожаловать Менеджер!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
         </StackPanel>
     </Grid>
