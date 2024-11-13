@@ -21,7 +21,7 @@
                 <TextBlock Text="Логин:" FontSize="16" FontWeight="Bold" Foreground="#333333" HorizontalAlignment="Center"/>
                 <Grid>
                     <TextBox x:Name="LoginTextBox" Height="40" Width="300" Margin="0,0,0,10" BorderBrush="#A8A8A8" BorderThickness="1" Padding="10" VerticalContentAlignment="Center" ToolTip="Введите логин" TextChanged="LoginTextBox_TextChanged"/>
-                    <TextBlock x:Name="WatermarkText" Text="Введите логин" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10,0,0,0" Visibility="Visible"/>
+                    <TextBlock x:Name="WatermarkText" Text="" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10,0,0,0" Visibility="Visible"/>
                 </Grid>
                 
                 <TextBlock Text="Пароль:" FontSize="16" FontWeight="Bold" Foreground="#333333" HorizontalAlignment="Center"/>

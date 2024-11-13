@@ -11,11 +11,13 @@ namespace БД_АВТОРИЗАЦИЯ.Хранитель_Memento_
     {
         public string Username { get; private set; }
         public string Role { get; private set; }
+        public string Password { get; private set; }
 
-        public Memento(string username, string role)
+        public Memento(string username, string role, string password)
         {
             Username = username;
             Role = role;
+            Password = password;
         }
     }
 }
