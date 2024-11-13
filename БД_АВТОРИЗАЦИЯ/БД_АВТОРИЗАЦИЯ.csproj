@@ -106,6 +106,7 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Наблюдатель%28Observer%29\Class1.cs" />
     <Compile Include="Роли\BakeryWorker.xaml.cs">
       <DependentUpon>BakeryWorker.xaml</DependentUpon>
     </Compile>
@@ -119,6 +120,7 @@
     <Compile Include="Авторизация.xaml.cs">
       <DependentUpon>Авторизация.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Состояние%28State%29\Class1.cs" />
     <Compile Include="Хранитель%28Memento%29\Caretaker.cs" />
     <Compile Include="Хранитель%28Memento%29\Memento.cs" />
     <Compile Include="Хранитель%28Memento%29\Originator.cs" />
@@ -204,9 +206,6 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Наблюдатель%28Observer%29\" />
-    <Folder Include="Состояние%28State%29\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
