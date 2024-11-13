@@ -13,10 +13,10 @@ namespace БД_АВТОРИЗАЦИЯ
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BakeryEntities : DbContext
+    public partial class BakeryEntities1 : DbContext
     {
-        public BakeryEntities()
-            : base("name=BakeryEntities")
+        public BakeryEntities1()
+            : base("name=BakeryEntities1")
         {
         }
     

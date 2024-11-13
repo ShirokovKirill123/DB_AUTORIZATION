@@ -29,7 +29,7 @@ namespace БД_АВТОРИЗАЦИЯ
             string username = LoginTextBox.Text;
             string password = PasswordBox.Password;
 
-            using (var context = new BakeryEntities())
+            using (var context = new BakeryEntities1())
             {
                 var user = context.Roles.FirstOrDefault(u => u.role_email == username && u.role_password == password);
 
