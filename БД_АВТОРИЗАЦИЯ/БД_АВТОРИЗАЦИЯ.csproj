@@ -119,6 +119,9 @@
     <Compile Include="Авторизация.xaml.cs">
       <DependentUpon>Авторизация.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Хранитель%28Memento%29\Caretaker.cs" />
+    <Compile Include="Хранитель%28Memento%29\Memento.cs" />
+    <Compile Include="Хранитель%28Memento%29\Originator.cs" />
     <Page Include="Роли\BakeryWorker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -200,6 +203,10 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Наблюдатель%28Observer%29\" />
+    <Folder Include="Состояние%28State%29\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
