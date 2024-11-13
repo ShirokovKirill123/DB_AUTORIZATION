@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,37 +17,55 @@ using System.Windows.Shapes;
 using БД_АВТОРИЗАЦИЯ.Хранитель_Memento_;
 
 namespace БД_АВТОРИЗАЦИЯ
-{
-    
+{    
     public partial class Авторизация : Page
     {
+
+        // Создание объектов для паттерна Memento
         private Caretaker _caretaker = new Caretaker();
         private Originator _originator = new Originator();
+
+        private const string MementoFileName = "memento.json";
 
         public Авторизация()
         {
             InitializeComponent();
             Manager.MainFrame = SecondFrame;
-            LoginTextBox.TextChanged += LoginTextBox_TextChanged;
+            RestoreLoginFromMemento();            
         }
 
-        // Событие для автозаполнения при изменении текста в LoginTextBox
+        private void RestoreLoginFromMemento()
+        {
+            if (File.Exists(MementoFileName))
+            {
+                string json = File.ReadAllText(MementoFileName);
+                _caretaker.Memento = JsonConvert.DeserializeObject<Memento>(json);
+
+                if (_caretaker.Memento != null)
+                {
+                    WatermarkText.Text = _caretaker.Memento.Username;
+                }
+            }
+        }
+
+        private void SaveLoginToMemento()
+        {
+            string json = JsonConvert.SerializeObject(_caretaker.Memento);
+            File.WriteAllText(MementoFileName, json);
+        }
+
         private void LoginTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string enteredUsername = LoginTextBox.Text;
-
-            if (_caretaker.Memento != null && _caretaker.Memento.Username.StartsWith(enteredUsername))
+            if (!string.IsNullOrEmpty(LoginTextBox.Text))
             {
-                // Автозаполнение подсказки в TextBox (простой пример):
-                LoginTextBox.ToolTip = $"Вы ранее вводили: {_caretaker.Memento.Username}";
+                WatermarkText.Visibility = Visibility.Collapsed;
             }
             else
             {
-                LoginTextBox.ToolTip = null; 
+                WatermarkText.Visibility = Visibility.Visible;
             }
         }
 
-        // Обработчик нажатия на кнопку "Войти"
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             string username = LoginTextBox.Text;
@@ -57,10 +77,11 @@ namespace БД_АВТОРИЗАЦИЯ
 
                 if (user != null)
                 {
-                    // Сохраняем состояние авторизации
                     _originator.Username = username;
                     _originator.Role = user.title_of_role;
-                    _caretaker.Memento = _originator.CreateMemento();
+                    _caretaker.Memento = _originator.CreateMemento(); // Сохранение состояния в Memento                    
+
+                    SaveLoginToMemento();
 
                     MainWindow mainWindow = new MainWindow();
 

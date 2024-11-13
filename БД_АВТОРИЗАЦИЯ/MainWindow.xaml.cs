@@ -24,6 +24,18 @@ namespace БД_АВТОРИЗАЦИЯ
         {
             InitializeComponent();
         }
-       
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.CanGoBack)
+            {
+                MainFrame.GoBack();
+            }
+            else
+            {
+                Авторизация авторизацияPage = new Авторизация();
+                MainFrame.Navigate(авторизацияPage);
+            }
+        }
     }
 }

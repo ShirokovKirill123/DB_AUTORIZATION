@@ -17,14 +17,16 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Margin="0,0,0,359" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Center" Grid.RowSpan="2" Width="798" Grid.Column="1">
+
+        <StackPanel Margin="0,0,0,359" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Center" Grid.RowSpan="2" Width="798" Grid.Column="1" >
+            <Button Content="Назад" Width="100" Height="30"  HorizontalAlignment="Left" Margin="10" Click="BackButton_Click" Background="SandyBrown" Grid.Row="0" Grid.Column="0"/>
             <Image Source="/Картинки/колос2.png" Width="151" Height="52"/>
             <TextBlock Text="Добро пожаловать в Пекарню!" 
-                       FontSize="30" 
+                       FontSize="28" 
                        FontWeight="Bold" 
                        Foreground="#8B4513" 
                        Margin="0,7,0,10" Height="44" Width="511"/>
-            <Image Source="/Картинки/колос2.png"  Width="234" Height="52" >
+            <Image Source="/Картинки/колос2.png"  Width="166" Height="52" >
                 <Image.RenderTransform>
                     <ScaleTransform ScaleX="-1" />
                 </Image.RenderTransform>
