@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace БД_АВТОРИЗАЦИЯ
+namespace Bakery_Project
 {
     using System;
     using System.Collections.Generic;

@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace БД_АВТОРИЗАЦИЯ
+namespace Bakery_Project
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BakeryEntities2 : DbContext
+    public partial class BakeryEntities3 : DbContext
     {
-        public BakeryEntities2()
-            : base("name=BakeryEntities2")
+        public BakeryEntities3()
+            : base("name=BakeryEntities3")
         {
         }
     

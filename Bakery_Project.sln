@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "БД_АВТОРИЗАЦИЯ", "БД_АВТОРИЗАЦИЯ\БД_АВТОРИЗАЦИЯ.csproj", "{CC69BA18-322E-4909-A343-7D2B78158737}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery", "БД_АВТОРИЗАЦИЯ\Bakery.csproj", "{CC69BA18-322E-4909-A343-7D2B78158737}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

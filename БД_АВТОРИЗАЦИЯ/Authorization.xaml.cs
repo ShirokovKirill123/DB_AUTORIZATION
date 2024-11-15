@@ -15,23 +15,27 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using БД_АВТОРИЗАЦИЯ.Хранитель_Memento_;
+using Bakery_Project;
+using БД_АВТОРИЗАЦИЯ;
 
-namespace БД_АВТОРИЗАЦИЯ
-{    
-    public partial class Авторизация : Page
+namespace Bakery_Project
+{
+    /// <summary>
+    /// Логика взаимодействия для Authorization.xaml
+    /// </summary>
+    public partial class Authorization : Page
     {
-
         // Создание объектов для паттерна Memento
         private Caretaker _caretaker = new Caretaker();
         private Originator _originator = new Originator();
 
         private const string MementoFileName = "memento.json";
 
-        public Авторизация()
+        public Authorization()
         {
             InitializeComponent();
             Manager.MainFrame = SecondFrame;
-            RestoreLoginFromMemento();            
+            RestoreLoginFromMemento();
         }
 
         private void RestoreLoginFromMemento()
@@ -71,7 +75,7 @@ namespace БД_АВТОРИЗАЦИЯ
             string username = LoginTextBox.Text;
             string password = PasswordBox.Password;
 
-            using (var context = new BakeryEntities2())
+            using (var context = new BakeryEntities3())
             {
                 var user = context.Roles.FirstOrDefault(u => u.role_email == username && u.role_password == password);
 
@@ -111,6 +115,6 @@ namespace БД_АВТОРИЗАЦИЯ
                     MessageBox.Show("Неверное имя пользователя или пароль");
                 }
             }
-        }        
+        }
     }
 }

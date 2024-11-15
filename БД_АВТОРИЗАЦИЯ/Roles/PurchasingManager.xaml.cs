@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -18,11 +16,11 @@ using System.Windows.Shapes;
 namespace БД_АВТОРИЗАЦИЯ
 {
     /// <summary>
-    /// Логика взаимодействия для _Admin.xaml
+    /// Логика взаимодействия для PurchasingManager.xaml
     /// </summary>
-    public partial class _Admin : Page
+    public partial class PurchasingManager : Page
     {
-        public _Admin()
+        public PurchasingManager()
         {
             InitializeComponent();
         }
@@ -32,39 +30,39 @@ namespace БД_АВТОРИЗАЦИЯ
             ___Без_имени_.Visibility = Visibility.Visible;
         }
 
-        private void Button1_Click(object sender, RoutedEventArgs e)
+        private void Button_Ingredients_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Button 1 clicked!");
+
         }
 
-        private void Button2_Click(object sender, RoutedEventArgs e)
+        private void Button_ProductComposition_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Button 2 clicked!");
+
         }
 
-        private void Button3_Click(object sender, RoutedEventArgs e)
+        private void Button_suppliedIngredients_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Button 3 clicked!");
+
         }
 
-        private void Button4_Click(object sender, RoutedEventArgs e)
+        private void Button_Suppliers_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Button 4 clicked!");
+
         }
 
-        private void Button5_Click(object sender, RoutedEventArgs e)
+        private void Button_Products_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Button 5 clicked!");
+
         }
 
-        private void Button6_Click(object sender, RoutedEventArgs e)
+        private void Button_OrderedProducts_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Button 6 clicked!");
+
         }
 
-        private void Button7_Click(object sender, RoutedEventArgs e)
+        private void Button_Orders_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Button 7 clicked!");
+
         }
 
         private void Button_MouseLeave_1(object sender, MouseEventArgs e)
