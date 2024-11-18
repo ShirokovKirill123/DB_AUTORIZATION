@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -14,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Bakery_Project;
 
 namespace БД_АВТОРИЗАЦИЯ
 {
@@ -27,14 +30,38 @@ namespace БД_АВТОРИЗАЦИЯ
             InitializeComponent();
         }
 
-        private void Button_MouseEnter_1(object sender, MouseEventArgs e)
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
-            ___Без_имени_.Visibility = Visibility.Visible;
+            SideMenu.Visibility = SideMenu.Visibility == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
+        }
+
+        private void Grid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (SideMenu.Visibility == Visibility.Visible)
+            {
+                Point clickPosition = e.GetPosition(this);
+
+                if (!IsPointInsideElement(SideMenu, clickPosition) && !IsPointInsideElement(MenuButton, clickPosition))
+                {
+                    SideMenu.Visibility = Visibility.Hidden;
+                }
+            }
+        }
+
+        private bool IsPointInsideElement(FrameworkElement element, Point point)
+        {
+            Rect bounds = new Rect(element.TranslatePoint(new Point(0, 0), this), element.RenderSize);
+
+            return bounds.Contains(point);
         }
 
         private void Button_Ingredients_Click(object sender, RoutedEventArgs e)
         {
-
+            using (var context = new BakeryEntities4())
+            {
+                var ingredientsList = context.Ingredients.ToList();
+                IngredientsDataGrid.ItemsSource = ingredientsList;
+            }
         }
 
         private void Button_ProductComposition_Click(object sender, RoutedEventArgs e)
@@ -65,21 +92,6 @@ namespace БД_АВТОРИЗАЦИЯ
         private void Button_Orders_Click(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        private void Button_MouseLeave_1(object sender, MouseEventArgs e)
-        {
-            ___Без_имени_.Visibility = Visibility.Hidden;
-        }
-
-        private void ___Без_имени__MouseEnter(object sender, MouseEventArgs e)
-        {
-            ___Без_имени_.Visibility = Visibility.Visible;
-        }
-
-        private void Button_MouseLeave_2(object sender, MouseEventArgs e)
-        {
-            ___Без_имени_.Visibility = Visibility.Hidden;
-        }
+        }        
     }
 }

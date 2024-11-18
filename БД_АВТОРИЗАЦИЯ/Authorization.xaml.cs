@@ -62,7 +62,7 @@ namespace Bakery_Project
         {
             if (!string.IsNullOrEmpty(LoginTextBox.Text))
             {
-                WatermarkText.Visibility = Visibility.Collapsed;
+                //WatermarkText.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -75,7 +75,7 @@ namespace Bakery_Project
             string username = LoginTextBox.Text;
             string password = PasswordBox.Password;
 
-            using (var context = new BakeryEntities3())
+            using (var context = new BakeryEntities4())
             {
                 var user = context.Roles.FirstOrDefault(u => u.role_email == username && u.role_password == password);
 

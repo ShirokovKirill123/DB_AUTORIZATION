@@ -8,9 +8,19 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="_Admin">
 
-    <Grid >
+    <Grid PreviewMouseDown="Grid_PreviewMouseDown" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="209"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
         <StackPanel>
-            <Button  Height="70" MouseEnter="Button_MouseEnter_1" HorizontalAlignment="Left" MouseLeave="Button_MouseLeave_1" >
+            <Button x:Name="MenuButton" Height="70"  HorizontalAlignment="Left" Click="MenuButton_Click">
                 <Image Source="\Images\меню.png" HorizontalAlignment="Center"/>
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -18,15 +28,28 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <StackPanel MouseEnter="___Без_имени__MouseEnter"  MouseLeave="Button_MouseLeave_2" Visibility="Hidden" x:Name="___Без_имени_" Width="70" Orientation="Vertical" Margin="0,5,0,0" HorizontalAlignment="Left">
-                <Button Content="Button_Ingredients" Margin="5" Click="Button_Ingredients_Click"/>
-                <Button Content="Button_ProductComposition" Margin="5" Click="Button_ProductComposition_Click"/>
-                <Button Content="Button_suppliedIngredients" Margin="5" Click="Button_suppliedIngredients_Click"/>
-                <Button Content="Button_Suppliers" Margin="5" Click="Button_Suppliers_Click"/>
-                <Button Content="Button_Products" Margin="5" Click="Button_Products_Click"/>
-                <Button Content="Button_OrderedProducts" Margin="5" Click="Button_OrderedProducts_Click"/>
-                <Button Content="Button_Orders" Margin="5" Click="Button_Orders_Click"/>
+
+            <StackPanel  x:Name="SideMenu" Width="209" Orientation="Vertical" Margin="0,5,0,0" HorizontalAlignment="Left" Height="600" Background="#F5DEB3">
+                <Button Content="Ингрединеты" Height="30" Margin="3,20" Click="Button_Ingredients_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold"  Background="SandyBrown"/>
+                <Button Content="Состав Продуктов" Height="30" Margin="3,20" Click="Button_ProductComposition_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold"  Background="SandyBrown"/>
+                <Button Content="Поставляемые Ингредиенты" Height="30" Margin="3,20" Click="Button_suppliedIngredients_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold"  Background="SandyBrown"/>
+                <Button Content="Поставщики" Height="30" Margin="3,20" Click="Button_Suppliers_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold"  Background="SandyBrown"/>
+                <Button Content="Продукты" Height="30" Margin="3,20" Click="Button_Products_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold"  Background="SandyBrown"/>
+                <Button Content="Заказанные Продукты" Height="30" Margin="3,20" Click="Button_OrderedProducts_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold"  Background="SandyBrown"/>
+                <Button Content="Заказы" Height="30" Margin="3,20" Click="Button_Orders_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold" Background="SandyBrown"/>
             </StackPanel>
         </StackPanel>
+
+        <DataGrid Name="IngredientsDataGrid" Grid.Column="1" Margin="10,73,204,92" AutoGenerateColumns="True"/>
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2" Background="#F5DEB3">
+            <TextBlock Text="Вы вошли как Администратор" 
+                FontSize="16" 
+                FontWeight="Bold" 
+                Foreground="#8B4513" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center"
+                Margin="55,0,0,0"/>
+        </Grid>
     </Grid>
 </Page>

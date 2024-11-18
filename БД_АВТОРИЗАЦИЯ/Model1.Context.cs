@@ -13,10 +13,10 @@ namespace Bakery_Project
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BakeryEntities3 : DbContext
+    public partial class BakeryEntities4 : DbContext
     {
-        public BakeryEntities3()
-            : base("name=BakeryEntities3")
+        public BakeryEntities4()
+            : base("name=BakeryEntities4")
         {
         }
     

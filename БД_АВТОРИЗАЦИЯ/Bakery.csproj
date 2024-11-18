@@ -144,6 +144,10 @@
     <Compile Include="Roles\_Admin.xaml.cs">
       <DependentUpon>_Admin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="State\Class1.cs" />
+    <Compile Include="Memento\Caretaker.cs" />
+    <Compile Include="Memento\Memento.cs" />
+    <Compile Include="Memento\Originator.cs" />
     <Compile Include="suppliedIngredients.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -153,10 +157,6 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="State\Class1.cs" />
-    <Compile Include="Memento\Caretaker.cs" />
-    <Compile Include="Memento\Memento.cs" />
-    <Compile Include="Memento\Originator.cs" />
     <Page Include="Authorization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

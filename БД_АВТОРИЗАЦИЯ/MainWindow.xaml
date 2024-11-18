@@ -10,29 +10,45 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
-        </Grid.ColumnDefinitions>
 
-        <StackPanel x:Name="stackpanel" Margin="0,0,0,359" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Center" Grid.RowSpan="2" Width="798" Grid.Column="1" >
-            <Button Content="Назад" Width="100" Height="30"  HorizontalAlignment="Left" Margin="10" Click="BackButton_Click" Background="SandyBrown" Grid.Row="0" Grid.Column="0"/>
-            <Image Source="/Картинки/колос2.png" Width="151" Height="52"/>
-            <TextBlock Text="Добро пожаловать в Пекарню!" 
-                       FontSize="28" 
-                       FontWeight="Bold" 
-                       Foreground="#8B4513" 
-                       Margin="0,7,0,10" Height="44" Width="511"/>
-            <Image Source="/Картинки/колос2.png"  Width="166" Height="52" >
-                <Image.RenderTransform>
-                    <ScaleTransform ScaleX="-1" />
-                </Image.RenderTransform>
-            </Image>
+        <Grid Grid.Row="0" Background="#F5DEB3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-        </StackPanel>
-        <Frame Name="MainFrame" NavigationUIVisibility="Hidden" Grid.ColumnSpan="3" Margin="0,5,0,10" Grid.Row="1"/>
+            <Button Content="Назад" 
+                    Width="100" 
+                    Height="30"  
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center" 
+                    Margin="10" 
+                    Click="BackButton_Click" 
+                    Background="SandyBrown"/>
+
+            <Grid Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image Source="/Images/колос2.png" Width="151" Margin="100,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+                <TextBlock Text="Добро пожаловать в Пекарню!" 
+                           FontSize="28" 
+                           FontWeight="Bold" 
+                           Foreground="#8B4513" 
+                           Margin="10,0" 
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           />
+
+                <Image Source="/Images/колос2.png" Width="151" Margin="1000,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <Image.RenderTransform>
+                        <ScaleTransform ScaleX="-1" />
+                    </Image.RenderTransform>
+                </Image>
+            </Grid>
+        </Grid>
+
+        <Frame Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1" Margin="10"/>
     </Grid>
 </Window>
