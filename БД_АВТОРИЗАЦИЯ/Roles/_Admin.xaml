@@ -40,7 +40,7 @@
             </StackPanel>
         </StackPanel>
 
-        <DataGrid Name="IngredientsDataGrid" Grid.Column="1" Margin="10,73,204,92" AutoGenerateColumns="True"/>
+        <DataGrid Name="DataGrid" Grid.Column="1" Margin="10,73,204,92" AutoGenerateColumns="True"/>
 
         <Grid Grid.Row="1" Grid.ColumnSpan="2" Background="#F5DEB3">
             <TextBlock Text="Вы вошли как Администратор" 

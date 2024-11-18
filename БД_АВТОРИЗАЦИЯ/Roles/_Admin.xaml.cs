@@ -60,7 +60,7 @@ namespace БД_АВТОРИЗАЦИЯ
             using (var context = new BakeryEntities4())
             {
                 var ingredientsList = context.Ingredients.ToList();
-                IngredientsDataGrid.ItemsSource = ingredientsList;
+                DataGrid.ItemsSource = ingredientsList;
             }
         }
 
