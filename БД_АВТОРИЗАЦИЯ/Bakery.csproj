@@ -141,6 +141,9 @@
     <Compile Include="Roles\PurchasingManager.xaml.cs">
       <DependentUpon>PurchasingManager.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Roles\ReportsPage.xaml.cs">
+      <DependentUpon>ReportsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Roles\_Admin.xaml.cs">
       <DependentUpon>_Admin.xaml</DependentUpon>
     </Compile>
@@ -178,6 +181,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Roles\PurchasingManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Roles\ReportsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

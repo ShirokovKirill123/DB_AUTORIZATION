@@ -25,7 +25,7 @@ namespace Bakery_Project
     /// </summary>
     public partial class Authorization : Page
     {
-        // Создание объектов для паттерна Memento
+        // Объекты для паттерна Memento
         private Caretaker _caretaker = new Caretaker();
         private Originator _originator = new Originator();
 
