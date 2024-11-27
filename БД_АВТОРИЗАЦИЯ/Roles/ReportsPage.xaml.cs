@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using БД_АВТОРИЗАЦИЯ.Хранитель_Memento_;
 using System.Data.Entity;   // Для Entity Framework 6
 
 
@@ -24,29 +25,34 @@ namespace БД_АВТОРИЗАЦИЯ
     /// </summary>
     public partial class ReportsPage : Page
     {
+
         public ReportsPage()
         {
             InitializeComponent();
+            LoadReportsForRole();
         }
 
-        private void LoadReportsForRole(string userRole)
+        private void LoadReportsForRole()
         {
             ReportsComboBox.Items.Clear();
 
-            if (userRole == "Пекарь")
+            string userRole = Ordinator.Current.Role;
+
+            if (userRole == "Bakery Worker")
             {
                 ReportsComboBox.Items.Add(new ComboBoxItem { Content = "Отчёт о произведённой продукции" });
                 ReportsComboBox.Items.Add(new ComboBoxItem { Content = "Отчёт о нехватке ингредиентов" });
                 ReportsComboBox.Items.Add(new ComboBoxItem { Content = "Отчёт о заказанных продуктах" });
             }
-            else if (userRole == "Менеджер по закупкам")
+            else if (userRole == "Purchasing Manager")
             {
+                ReportsComboBox.Items.Add(new ComboBoxItem { Content = "Отчёт о нехватке ингредиентов" });
                 ReportsComboBox.Items.Add(new ComboBoxItem { Content = "Отчёт о необходимых закупках" });
                 ReportsComboBox.Items.Add(new ComboBoxItem { Content = "Отчёт о поставках по ингредиентам" });
                 ReportsComboBox.Items.Add(new ComboBoxItem { Content = "Отчёт о поступлении и расходе ингредиентов" });
                 ReportsComboBox.Items.Add(new ComboBoxItem { Content = "Отчёт о состоянии запасов" });
             }
-            else if (userRole == "Администратор")
+            else if (userRole == "Admin")
             {
                 ReportsComboBox.Items.Add(new ComboBoxItem { Content = "Отчёт о произведённой продукции" });
                 ReportsComboBox.Items.Add(new ComboBoxItem { Content = "Отчёт о нехватке ингредиентов" });
@@ -55,10 +61,14 @@ namespace БД_АВТОРИЗАЦИЯ
                 ReportsComboBox.Items.Add(new ComboBoxItem { Content = "Отчёт о поставках по ингредиентам" });
                 ReportsComboBox.Items.Add(new ComboBoxItem { Content = "Отчёт о поступлении и расходе ингредиентов" });
                 ReportsComboBox.Items.Add(new ComboBoxItem { Content = "Отчёт о состоянии запасов" });
-                ReportsComboBox.Items.Add(new ComboBoxItem { Content = "Отчёты по общей прибыли" });
+                ReportsComboBox.Items.Add(new ComboBoxItem { Content = "Отчёт о прибыли" });
+            }
+            else
+            {
+                MessageBox.Show("Неизвестная роль пользователя");
             }
         }
-
+       
         private void ExportButton_Click(object sender, RoutedEventArgs e)
         {
             var data = ReportsDataGrid.ItemsSource as IEnumerable<object>;
@@ -131,6 +141,7 @@ namespace БД_АВТОРИЗАЦИЯ
                     default:
                         MessageBox.Show("Неизвестный отчёт");
                         break;
+
                 }
             }
         }
@@ -172,19 +183,11 @@ namespace БД_АВТОРИЗАЦИЯ
                  Название = i.iName,
                  Единица = i.unitOfMeasurement,
                  Доступно = i.availableQuantity ?? 0,
-                 Требуется = minimumRequiredQuantity
-             })
-             .ToList()
-             .Select(i => new
-             {
-                 i.id,
-                 i.Название,
-                 i.Единица,
-                 i.Доступно,
-                 i.Требуется,
-                 Необходимо = Math.Max(i.Требуется - i.Доступно, 0)
+                 Требуется = minimumRequiredQuantity,
+                 Необходимо = Math.Max(minimumRequiredQuantity - (i.availableQuantity ?? 0), 0)
              })
              .ToList();
+            
 
             ReportsDataGrid.ItemsSource = reportData;
             ReportsDataGrid.Columns.Clear();

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace БД_АВТОРИЗАЦИЯ.Observer
 {
-    internal class Class1
+    public interface IObserver
     {
+        void Update(string message);
     }
 }

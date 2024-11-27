@@ -25,9 +25,8 @@ namespace Bakery_Project
     /// </summary>
     public partial class Authorization : Page
     {
-        // Объекты для паттерна Memento
+        // Объект паттерна Memento
         private Caretaker _caretaker = new Caretaker();
-        private Originator _originator = new Originator();
 
         private const string MementoFileName = "memento.json";
 
@@ -81,9 +80,10 @@ namespace Bakery_Project
 
                 if (user != null)
                 {
-                    _originator.Username = username;
-                    _originator.Role = user.title_of_role;
-                    _caretaker.Memento = _originator.CreateMemento(); // Сохранение состояния в Memento                    
+                    Ordinator.Current.Username = username;
+                    Ordinator.Current.Role = user.title_of_role;
+
+                    _caretaker.Memento = Ordinator.Current.CreateMemento();           
 
                     SaveLoginToMemento();
 
@@ -95,11 +95,11 @@ namespace Bakery_Project
                     }
                     else if (user.title_of_role == "Purchasing Manager")
                     {
-                        mainWindow.MainFrame.Navigate(new BakeryWorker());
+                        mainWindow.MainFrame.Navigate(new PurchasingManager());
                     }
                     else if (user.title_of_role == "Bakery Worker")
                     {
-                        mainWindow.MainFrame.Navigate(new PurchasingManager());
+                        mainWindow.MainFrame.Navigate(new BakeryWorker());
                     }
                     else
                     {

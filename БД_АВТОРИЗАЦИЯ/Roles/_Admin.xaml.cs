@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 
 using System.Data.Entity; // Для Entity Framework 6
 using Bakery_Project;
+using Bakery_Project.State;
 
 namespace БД_АВТОРИЗАЦИЯ
 {
@@ -63,6 +64,8 @@ namespace БД_АВТОРИЗАЦИЯ
         {
             using (var context = new BakeryEntities4())
             {
+                DataGrid.ContextMenu = null;
+
                 var ingredientsList = context.Ingredients.ToList();
 
                 DataGrid.ItemsSource = ingredientsList;
@@ -81,6 +84,8 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void Button_ProductComposition_Click(object sender, RoutedEventArgs e)
         {
+            DataGrid.ContextMenu = null;
+
             using (var context = new BakeryEntities4())
             {
                 var productCompositionList = context.ProductСomposition
@@ -110,6 +115,8 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void Button_suppliedIngredients_Click(object sender, RoutedEventArgs e)
         {
+            DataGrid.ContextMenu = null;
+
             using (var context = new BakeryEntities4())
             {
                 var suppliedIngredientsList = context.suppliedIngredients
@@ -148,6 +155,8 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void Button_Suppliers_Click(object sender, RoutedEventArgs e)
         {
+            DataGrid.ContextMenu = null;
+
             using (var context = new BakeryEntities4())
             {
                 var suppliersList = context.Suppliers.ToList();
@@ -166,6 +175,8 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void Button_Products_Click(object sender, RoutedEventArgs e)
         {
+            DataGrid.ContextMenu = null;
+
             using (var context = new BakeryEntities4())
             {
                 var productsList = context.Products.ToList();
@@ -191,6 +202,8 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void Button_OrderedProducts_Click(object sender, RoutedEventArgs e)
         {
+            DataGrid.ContextMenu = null;
+
             using (var context = new BakeryEntities4())
             {
                 var orderedProductsList = context.OrderedProducts
@@ -218,14 +231,33 @@ namespace БД_АВТОРИЗАЦИЯ
             }
         }
 
+        //реализация паттерна State
         private void Button_Orders_Click(object sender, RoutedEventArgs e)
         {
             using (var context = new BakeryEntities4())
             {
                 var ordersList = context.Orders.ToList();
 
+                foreach (var order in ordersList)
+                {
+                    var orderContext = new OrderContext(order);                  
+                }
+
                 DataGrid.ItemsSource = ordersList;
                 currentTable = "Orders";
+
+                DataGrid.ContextMenu = null;
+                var contextMenu = new ContextMenu();
+
+                var menuItemCompleted = new MenuItem { Header = "Отметить как выполненный" };
+                menuItemCompleted.Click += MarkOrderAsCompleted;
+                var menuItemCanceled = new MenuItem { Header = "Отменить заказ" };
+                menuItemCanceled.Click += MarkOrderAsCanceled;
+
+                contextMenu.Items.Add(menuItemCompleted);
+                contextMenu.Items.Add(menuItemCanceled);
+
+                DataGrid.ContextMenu = contextMenu;
 
                 DataGrid.Columns.Clear();
                 DataGrid.Columns.Add(new DataGridTextColumn { Header = "ID", Binding = new Binding("id") });
@@ -234,6 +266,37 @@ namespace БД_АВТОРИЗАЦИЯ
 
                 StackPanelVisibility();
             }
+        }
+
+        private void MarkOrderAsCompleted(object sender, RoutedEventArgs e)
+        {
+            var selectedOrder = (Orders)DataGrid.SelectedItem;
+            var orderContext = new OrderContext(selectedOrder);
+
+            orderContext.MarkAsCompleted();
+            using (var context = new BakeryEntities4())
+            {
+                context.Entry(selectedOrder).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+            }
+
+            Button_Orders_Click(sender, e);
+        }
+
+        private void MarkOrderAsCanceled(object sender, RoutedEventArgs e)
+        {
+            var selectedOrder = (Orders)DataGrid.SelectedItem;
+            var orderContext = new OrderContext(selectedOrder);
+
+            orderContext.MarkAsCanceled();
+
+            using (var context = new BakeryEntities4())
+            {
+                context.Entry(selectedOrder).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+            }
+
+            Button_Orders_Click(sender, e);
         }
 
         private void StackPanelVisibility()
@@ -757,6 +820,6 @@ namespace БД_АВТОРИЗАЦИЯ
             var mainWindow = Window.GetWindow(this); 
             var window = (MainWindow)mainWindow;
             window.MainFrame.Navigate(new ReportsPage());
-        }
+        }        
     }
 }

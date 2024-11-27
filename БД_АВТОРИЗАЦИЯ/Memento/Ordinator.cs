@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace БД_АВТОРИЗАЦИЯ.Хранитель_Memento_
 {
     // Управление состоянием авторизации
-    class Originator
+    class Ordinator
     {
         public string Username { get; set; }
         public string Role { get; set; }
@@ -22,5 +22,6 @@ namespace БД_АВТОРИЗАЦИЯ.Хранитель_Memento_
             Username = memento.Username;
             Role = memento.Role;
         }
+        public static Ordinator Current { get; private set; } = new Ordinator();
     }
 }

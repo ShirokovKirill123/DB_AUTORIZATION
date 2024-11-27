@@ -47,6 +47,12 @@
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                 </Style>
             </DataGrid.Resources>
+            <!--<DataGrid.ContextMenu>
+                <ContextMenu x:Name="OrderContextMenu" IsEnabled="false">
+                    <MenuItem Header="Отметить как выполненный" Click="MarkOrderAsCompleted" />
+                    <MenuItem Header="Отменить заказ" Click="MarkOrderAsCanceled" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>-->
         </DataGrid>
 
         <Grid Grid.Row="1" Grid.ColumnSpan="3" Background="#F5DEB3">
