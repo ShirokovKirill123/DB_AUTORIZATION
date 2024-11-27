@@ -34,6 +34,11 @@ namespace БД_АВТОРИЗАЦИЯ
             InitializeComponent();
         }
 
+        public void Update(string message)
+        {
+            Console.WriteLine($"Менеджер по закупкам получил уведомление: {message}");
+        }
+
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             SideMenu.Visibility = SideMenu.Visibility == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
@@ -61,7 +66,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void Button_Ingredients_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 var ingredientsList = context.Ingredients.ToList();
 
@@ -81,7 +86,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void Button_suppliedIngredients_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 var suppliedIngredientsList = context.suppliedIngredients
                     .Include(si => si.Ingredients)
@@ -119,7 +124,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void Button_Suppliers_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 var suppliersList = context.Suppliers.ToList();
 
@@ -137,7 +142,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void Button_Products_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 var productsList = context.Products.ToList();
 
@@ -174,7 +179,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 switch (currentTable)
                 {
@@ -233,7 +238,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 if (currentTable == "Ingredients")
                 {
@@ -357,7 +362,7 @@ namespace БД_АВТОРИЗАЦИЯ
                 return;
             }
 
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 dynamic itemToDelete = null;
 

@@ -14,8 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 using БД_АВТОРИЗАЦИЯ.Хранитель_Memento_;
 using System.Data.Entity;   // Для Entity Framework 6
+using Bakery_Project.Observer;
 
 
 namespace БД_АВТОРИЗАЦИЯ
@@ -25,11 +27,16 @@ namespace БД_АВТОРИЗАЦИЯ
     /// </summary>
     public partial class ReportsPage : Page
     {
+        private IngredientStockNotifier _ingredientStockNotifier;
 
         public ReportsPage()
         {
             InitializeComponent();
             LoadReportsForRole();
+
+            //_ingredientStockNotifier = new IngredientStockNotifier();
+            //var purchasingManager = new PurchasingManager();
+            //_ingredientStockNotifier.AddObserver(purchasingManager);
         }
 
         private void LoadReportsForRole()
@@ -110,7 +117,7 @@ namespace БД_АВТОРИЗАЦИЯ
             if (string.IsNullOrWhiteSpace(selectedReport))
                 return;
 
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 switch (selectedReport)
                 {
@@ -146,7 +153,7 @@ namespace БД_АВТОРИЗАЦИЯ
             }
         }
 
-        private void DisplayProducedProductsReport(BakeryEntities4 context)
+        private void DisplayProducedProductsReport(BakeryEntities5 context)
         {
             var reportData = context.Products
                 .Select(p => new
@@ -171,36 +178,58 @@ namespace БД_АВТОРИЗАЦИЯ
             ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Срок хранения", Binding = new Binding("Срок_Хранения") });
         }
 
-        private void DisplayInsufficientIngredientsReport(BakeryEntities4 context)
+        private void DisplayInsufficientIngredientsReport(BakeryEntities5 context)
         {
-            const int minimumRequiredQuantity = 20;
+              const int minimumRequiredQuantity = 20;
 
-            var reportData = context.Ingredients
-             .Where(i => i.availableQuantity < minimumRequiredQuantity)
-             .Select(i => new
-             {
-                 i.id,
-                 Название = i.iName,
-                 Единица = i.unitOfMeasurement,
-                 Доступно = i.availableQuantity ?? 0,
-                 Требуется = minimumRequiredQuantity,
-                 Необходимо = Math.Max(minimumRequiredQuantity - (i.availableQuantity ?? 0), 0)
-             })
-             .ToList();
-            
+              var reportData = context.Ingredients
+              .Where(i => i.availableQuantity < minimumRequiredQuantity)
+              .Select(i => new
+              {
+                  i.id,
+                  Название = i.iName,
+                  Единица = i.unitOfMeasurement,
+                  Доступно = i.availableQuantity ?? 0,
+                  Требуется = minimumRequiredQuantity
+              })
+              .ToList()  
+              .Select(i => new
+              {
+                  i.id,
+                  i.Название,
+                  i.Единица,
+                  i.Доступно,
+                  i.Требуется,
+                  Необходимо = Math.Max(i.Требуется - i.Доступно, 0)
+              })
+              .ToList(); 
 
-            ReportsDataGrid.ItemsSource = reportData;
-            ReportsDataGrid.Columns.Clear();
 
-            ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "ID", Binding = new Binding("id") });
-            ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Название ингредиента", Binding = new Binding("Название") });
-            ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Единица измерения", Binding = new Binding("Единица") });
-            ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Доступное количество", Binding = new Binding("Доступно") });
-            ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Требуемое количество", Binding = new Binding("Требуется") });
-            ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Недостает", Binding = new Binding("Необходимо") });
+              ReportsDataGrid.ItemsSource = reportData;
+              ReportsDataGrid.Columns.Clear();
+
+              ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "ID", Binding = new Binding("id") });
+              ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Название ингредиента", Binding = new Binding("Название") });
+              ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Единица измерения", Binding = new Binding("Единица") });
+              ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Доступное количество", Binding = new Binding("Доступно") });
+              ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Требуемое количество", Binding = new Binding("Требуется") });
+              ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Недостает", Binding = new Binding("Необходимо") });
+
+            // Проверяем, есть ли нехватка ингредиентов
+            //if (reportData.Any(i => i.Необходимо > 0))
+            //{
+            //    // Если есть нехватка, уведомляем подписчиков
+            //    foreach (var item in reportData)
+            //    {
+            //        if (item.Необходимо > 0)
+            //        {
+            //            _ingredientStockNotifier.NotifyInsufficientStock(item.Название);
+            //        }
+            //    }
+            //}
         }
 
-        private void DisplayOrderedProductsReport(BakeryEntities4 context)
+        private void DisplayOrderedProductsReport(BakeryEntities5 context)
         {
             var reportData = context.OrderedProducts
             .Include(op => op.Products)
@@ -230,7 +259,7 @@ namespace БД_АВТОРИЗАЦИЯ
         }
 
 
-        private void DisplayNecessaryPurchasesReport(BakeryEntities4 context)
+        private void DisplayNecessaryPurchasesReport(BakeryEntities5 context)
         {
             var reportData = context.Ingredients
                 .Where(i => (i.availableQuantity ?? 0) < 20) 
@@ -255,7 +284,7 @@ namespace БД_АВТОРИЗАЦИЯ
             ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Поставщик", Binding = new Binding("Поставщик") });
         }
 
-        private void DisplaySuppliesReport(BakeryEntities4 context)
+        private void DisplaySuppliesReport(BakeryEntities5 context)
         {
             var reportData = context.suppliedIngredients
            .Include(si => si.Suppliers)
@@ -278,7 +307,7 @@ namespace БД_АВТОРИЗАЦИЯ
             ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Цена", Binding = new Binding("Цена") });
         }
 
-        private void DisplayIngredientUsageReport(BakeryEntities4 context)
+        private void DisplayIngredientUsageReport(BakeryEntities5 context)
         {
             var reportData = context.Ingredients
             .Select(i => new
@@ -305,7 +334,7 @@ namespace БД_АВТОРИЗАЦИЯ
             ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Расход", Binding = new Binding("Расход") });
         }
 
-        private void DisplayInventoryStateReport(BakeryEntities4 context)
+        private void DisplayInventoryStateReport(BakeryEntities5 context)
         {
             var reportData = context.Ingredients
             .Select(i => new
@@ -328,14 +357,14 @@ namespace БД_АВТОРИЗАЦИЯ
             ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Стоимость запасов", Binding = new Binding("Стоимость_запасов") });
         }        
 
-        private void DisplayProfitReport(BakeryEntities4 context)
+        private void DisplayProfitReport(BakeryEntities5 context)
         {
             var reportData = context.Orders
            .Where(o => o.condition == "Выполнен")  
            .Select(o => new
            {
                 o.id,
-                Общая_цена = o.OrderedProducts.Sum(op => op.price),  
+                Общая_цена = o.OrderedProducts.Sum(op => op.price ?? 0),  
                 Дата_заказа = o.orderDate
            })
            .ToList();

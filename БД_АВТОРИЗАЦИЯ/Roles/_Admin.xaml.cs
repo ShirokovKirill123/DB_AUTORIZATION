@@ -62,7 +62,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void Button_Ingredients_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 DataGrid.ContextMenu = null;
 
@@ -86,7 +86,7 @@ namespace БД_АВТОРИЗАЦИЯ
         {
             DataGrid.ContextMenu = null;
 
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 var productCompositionList = context.ProductСomposition
                     .Include(pc => pc.Ingredients)
@@ -117,7 +117,7 @@ namespace БД_АВТОРИЗАЦИЯ
         {
             DataGrid.ContextMenu = null;
 
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 var suppliedIngredientsList = context.suppliedIngredients
                     .Include(si => si.Ingredients)
@@ -157,7 +157,7 @@ namespace БД_АВТОРИЗАЦИЯ
         {
             DataGrid.ContextMenu = null;
 
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 var suppliersList = context.Suppliers.ToList();
 
@@ -177,7 +177,7 @@ namespace БД_АВТОРИЗАЦИЯ
         {
             DataGrid.ContextMenu = null;
 
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 var productsList = context.Products.ToList();
 
@@ -204,7 +204,7 @@ namespace БД_АВТОРИЗАЦИЯ
         {
             DataGrid.ContextMenu = null;
 
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 var orderedProductsList = context.OrderedProducts
                     .Include(op => op.Products)
@@ -234,7 +234,7 @@ namespace БД_АВТОРИЗАЦИЯ
         //реализация паттерна State
         private void Button_Orders_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 var ordersList = context.Orders.ToList();
 
@@ -274,7 +274,7 @@ namespace БД_АВТОРИЗАЦИЯ
             var orderContext = new OrderContext(selectedOrder);
 
             orderContext.MarkAsCompleted();
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 context.Entry(selectedOrder).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
@@ -290,7 +290,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
             orderContext.MarkAsCanceled();
 
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 context.Entry(selectedOrder).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
@@ -313,7 +313,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 switch (currentTable)
                 {
@@ -403,7 +403,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 if (currentTable == "Ingredients")
                 {
@@ -601,7 +601,7 @@ namespace БД_АВТОРИЗАЦИЯ
                 return;
             }
 
-            using (var context = new BakeryEntities4())
+            using (var context = new BakeryEntities5())
             {
                 dynamic itemToDelete = null;
 
