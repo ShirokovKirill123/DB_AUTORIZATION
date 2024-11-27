@@ -34,9 +34,7 @@ namespace БД_АВТОРИЗАЦИЯ
             InitializeComponent();
             LoadReportsForRole();
 
-            //_ingredientStockNotifier = new IngredientStockNotifier();
-            //var purchasingManager = new PurchasingManager();
-            //_ingredientStockNotifier.AddObserver(purchasingManager);
+            _ingredientStockNotifier = new IngredientStockNotifier();
         }
 
         private void LoadReportsForRole()
@@ -202,9 +200,8 @@ namespace БД_АВТОРИЗАЦИЯ
                   i.Требуется,
                   Необходимо = Math.Max(i.Требуется - i.Доступно, 0)
               })
-              .ToList(); 
-
-
+              .ToList();
+               
               ReportsDataGrid.ItemsSource = reportData;
               ReportsDataGrid.Columns.Clear();
 
@@ -215,18 +212,14 @@ namespace БД_АВТОРИЗАЦИЯ
               ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Требуемое количество", Binding = new Binding("Требуется") });
               ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Недостает", Binding = new Binding("Необходимо") });
 
-            // Проверяем, есть ли нехватка ингредиентов
-            //if (reportData.Any(i => i.Необходимо > 0))
-            //{
-            //    // Если есть нехватка, уведомляем подписчиков
-            //    foreach (var item in reportData)
-            //    {
-            //        if (item.Необходимо > 0)
-            //        {
-            //            _ingredientStockNotifier.NotifyInsufficientStock(item.Название);
-            //        }
-            //    }
-            //}
+
+            if (reportData.Any())
+            {
+                var insufficientStockMessage = "Есть нехватка ингредиентов. Обратите внимание на отчёт о нехватке ингредиентов.";
+
+                var ingredientStockNotifier = IngredientStockNotifier.Current;
+                ingredientStockNotifier.NotifyInsufficientStock(insufficientStockMessage);
+            }
         }
 
         private void DisplayOrderedProductsReport(BakeryEntities5 context)

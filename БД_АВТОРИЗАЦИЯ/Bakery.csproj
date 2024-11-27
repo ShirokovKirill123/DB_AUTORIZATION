@@ -121,7 +121,7 @@
     <Compile Include="Observer\IngredientStockNotifier.cs" />
     <Compile Include="Observer\IObservable.cs" />
     <Compile Include="Observer\IObserver.cs" />
-    <Compile Include="Observer\PurchasingManager.cs" />
+    <Compile Include="Observer\PurchasingManagerObserver.cs" />
     <Compile Include="OrderedProducts.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

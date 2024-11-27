@@ -34,5 +34,8 @@ namespace Bakery_Project.Observer
             string message = $"Предупреждение: нехватка ингредиента: {ingredientName}.";
             NotifyObservers(message);  
         }
+
+        public static IngredientStockNotifier Current { get; private set; } = new IngredientStockNotifier();
+
     }
 }

@@ -19,6 +19,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using System.Data.Entity; // Для Entity Framework 6
+using Bakery_Project.Observer;
 
 namespace БД_АВТОРИЗАЦИЯ
 {
@@ -28,16 +29,20 @@ namespace БД_АВТОРИЗАЦИЯ
     public partial class PurchasingManager : Page
     {
         private string currentTable;
+        private PurchasingManagerObserver _purchasingManagerObserver;
 
         public PurchasingManager()
         {
             InitializeComponent();
-        }
 
-        public void Update(string message)
-        {
-            Console.WriteLine($"Менеджер по закупкам получил уведомление: {message}");
-        }
+            _purchasingManagerObserver = new PurchasingManagerObserver();
+
+            this.DataContext = _purchasingManagerObserver;
+
+            var ingredientStockNotifier = IngredientStockNotifier.Current;
+
+            ingredientStockNotifier.AddObserver(_purchasingManagerObserver);
+        }           
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
