@@ -36,13 +36,23 @@ namespace БД_АВТОРИЗАЦИЯ
             InitializeComponent();
 
             _purchasingManagerObserver = new PurchasingManagerObserver();
-
             this.DataContext = _purchasingManagerObserver;
-
             var ingredientStockNotifier = IngredientStockNotifier.Current;
-
             ingredientStockNotifier.AddObserver(_purchasingManagerObserver);
-        }           
+
+            HideNotifyTextBox();
+        }
+        private void HideNotifyTextBox()
+        {
+            if (_purchasingManagerObserver == null)
+            {
+                TBNotification.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                TBNotification.Visibility = Visibility.Visible;
+            }
+        }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {

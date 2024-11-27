@@ -29,9 +29,9 @@ namespace Bakery_Project.Observer
             }
         }
 
-        public void NotifyInsufficientStock(string ingredientName)
+        public void NotifyInsufficientStock(string notification)
         {
-            string message = $"Предупреждение: нехватка ингредиента: {ingredientName}.";
+            string message = $"Предупреждение: {notification}";
             NotifyObservers(message);  
         }
 

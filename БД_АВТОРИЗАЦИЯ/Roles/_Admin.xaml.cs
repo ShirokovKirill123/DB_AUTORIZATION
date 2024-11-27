@@ -20,6 +20,7 @@ using System.Windows.Shapes;
 using System.Data.Entity; // Для Entity Framework 6
 using Bakery_Project;
 using Bakery_Project.State;
+using Bakery_Project.Observer;
 
 namespace БД_АВТОРИЗАЦИЯ
 {
@@ -28,11 +29,31 @@ namespace БД_АВТОРИЗАЦИЯ
     /// </summary>
     public partial class _Admin : Page
     {
-        private string currentTable; 
+        private string currentTable;
+        private PurchasingManagerObserver _purchasingManagerObserver;
 
         public _Admin()
         {
-            InitializeComponent();            
+            InitializeComponent();
+
+            _purchasingManagerObserver = new PurchasingManagerObserver();
+            this.DataContext = _purchasingManagerObserver;
+            var ingredientStockNotifier = IngredientStockNotifier.Current;
+            ingredientStockNotifier.AddObserver(_purchasingManagerObserver);
+
+            MessageBox.Show(_purchasingManagerObserver.ToString());
+        }
+
+        private void HideNotifyTextBox()
+        {
+            if (_purchasingManagerObserver == null)
+            {
+                TBNotification.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                TBNotification.Visibility = Visibility.Visible;
+            }
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
@@ -309,6 +330,8 @@ namespace БД_АВТОРИЗАЦИЯ
             {
                 StackPanel2.Visibility = Visibility.Visible;    
             }
+
+            HideNotifyTextBox();
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:БД_АВТОРИЗАЦИЯ"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="700" d:DesignWidth="800"
       Title="PurchasingManager">
 
     <Grid PreviewMouseDown="Grid_PreviewMouseDown" Background="Transparent">
@@ -55,7 +55,7 @@
             HorizontalAlignment="Center"
             Margin="55,0,0,0"/>
         </Grid>
-        <StackPanel x:Name="StackPanel2" Grid.Column="2" Margin="0,80,10,0" Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top" Width="159"  Visibility="Hidden">
+        <StackPanel x:Name="StackPanel2" Grid.Column="2" Margin="0,80,10,0" Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top" Width="160"  >
             <TextBlock Text="ID" Margin="5" HorizontalAlignment="Center" FontFamily="Yu Gothic UI Semibold"/>
             <TextBox x:Name="TextBoxID" Margin="5" Height="20" />
 
@@ -68,7 +68,9 @@
             <Button Content="Обновить" Click="ButtonUpdate_Click" Margin="5,15,5,5" Background="YellowGreen" Height="30" FontFamily="Yu Gothic UI Semibold"/>
             <Button Content="Фильтрация" Click="ButtonFilter_Click" Margin="5,15,5,5" Background="BlanchedAlmond" Height="30" FontFamily="Yu Gothic UI Semibold"/>
             <Button Content="Отчёты" Click="ButtonReport_Click" Margin="5,15,5,5" Background="SandyBrown" Height="30" FontFamily="Yu Gothic UI Semibold"/>
-            <TextBlock Text="{Binding NotificationMessage}" Margin="5,15,5,5" Background="DeepSkyBlue" Height="30" FontFamily="Yu Gothic UI Semibold"/>
+            <Border Background="#FFA0C7E6" Margin="5,15,5,5" CornerRadius="5">
+                <TextBlock x:Name="TBNotification" Text="{Binding NotificationMessage}" FontFamily="Yu Gothic UI Semibold" TextWrapping="Wrap" MaxWidth="300" TextAlignment="Center" />
+            </Border>
         </StackPanel>
     </Grid>
 </Page>
