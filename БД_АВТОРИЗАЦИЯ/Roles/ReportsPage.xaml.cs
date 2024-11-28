@@ -216,7 +216,6 @@ namespace БД_АВТОРИЗАЦИЯ
             if (reportData.Any())
             {
                 var insufficientStockMessage = "Есть нехватка ингредиентов. Обратите внимание на отчёт о нехватке ингредиентов.";
-
                 var ingredientStockNotifier = IngredientStockNotifier.Current;
                 ingredientStockNotifier.NotifyInsufficientStock(insufficientStockMessage);
             }

@@ -40,21 +40,24 @@ namespace БД_АВТОРИЗАЦИЯ
             this.DataContext = _purchasingManagerObserver;
             var ingredientStockNotifier = IngredientStockNotifier.Current;
             ingredientStockNotifier.AddObserver(_purchasingManagerObserver);
-
-            MessageBox.Show(_purchasingManagerObserver.ToString());
+            HideNotifyTextBox();
         }
 
-        private void HideNotifyTextBox()
+        public void HideNotifyTextBox()
         {
-            if (_purchasingManagerObserver == null)
+            if (TBNotification.Text == "")
             {
+                border.Visibility = Visibility.Hidden;
                 TBNotification.Visibility = Visibility.Hidden;
             }
             else
             {
+                border.Visibility = Visibility.Visible;
                 TBNotification.Visibility = Visibility.Visible;
             }
-        }
+        }       
+
+
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
@@ -330,8 +333,6 @@ namespace БД_АВТОРИЗАЦИЯ
             {
                 StackPanel2.Visibility = Visibility.Visible;    
             }
-
-            HideNotifyTextBox();
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
@@ -843,6 +844,20 @@ namespace БД_АВТОРИЗАЦИЯ
             var mainWindow = Window.GetWindow(this); 
             var window = (MainWindow)mainWindow;
             window.MainFrame.Navigate(new ReportsPage());
-        }        
+        }
+
+        private void TBNotification_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TBNotification.Text == "")
+            {
+                border.Visibility = Visibility.Hidden;
+                TBNotification.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                border.Visibility = Visibility.Visible;
+                TBNotification.Visibility = Visibility.Visible;
+            }
+        }
     }
 }
