@@ -40,24 +40,7 @@ namespace БД_АВТОРИЗАЦИЯ
             this.DataContext = _purchasingManagerObserver;
             var ingredientStockNotifier = IngredientStockNotifier.Current;
             ingredientStockNotifier.AddObserver(_purchasingManagerObserver);
-            HideNotifyTextBox();
-        }
-
-        public void HideNotifyTextBox()
-        {
-            if (TBNotification.Text == "")
-            {
-                border.Visibility = Visibility.Hidden;
-                TBNotification.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                border.Visibility = Visibility.Visible;
-                TBNotification.Visibility = Visibility.Visible;
-            }
-        }       
-
-
+        }     
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {

@@ -42,14 +42,17 @@ namespace БД_АВТОРИЗАЦИЯ
 
             HideNotifyTextBox();
         }
-        private void HideNotifyTextBox()
+
+        public void HideNotifyTextBox()
         {
-            if (_purchasingManagerObserver == null)
+            if (TBNotification.Text == "")
             {
+                border.Visibility = Visibility.Hidden;
                 TBNotification.Visibility = Visibility.Hidden;
             }
             else
             {
+                border.Visibility = Visibility.Visible;
                 TBNotification.Visibility = Visibility.Visible;
             }
         }
