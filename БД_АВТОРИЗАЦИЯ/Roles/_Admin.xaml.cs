@@ -40,7 +40,21 @@ namespace БД_АВТОРИЗАЦИЯ
             this.DataContext = _purchasingManagerObserver;
             var ingredientStockNotifier = IngredientStockNotifier.Current;
             ingredientStockNotifier.AddObserver(_purchasingManagerObserver);
-        }     
+
+            TBNotification_TextChanged(null, null);
+        }       
+
+        private void TBNotification_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TBNotification.Text == "")
+            {
+                border.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                border.Visibility = Visibility.Visible;
+            }
+        }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
@@ -117,7 +131,7 @@ namespace БД_АВТОРИЗАЦИЯ
                 DataGrid.Columns[4].Width = new DataGridLength(2, DataGridLengthUnitType.Star);
 
                 StackPanelVisibility();
-            }           
+            }
         }
 
         private void Button_suppliedIngredients_Click(object sender, RoutedEventArgs e)
@@ -247,7 +261,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
                 foreach (var order in ordersList)
                 {
-                    var orderContext = new OrderContext(order);                  
+                    var orderContext = new OrderContext(order);
                 }
 
                 DataGrid.ItemsSource = ordersList;
@@ -310,11 +324,11 @@ namespace БД_АВТОРИЗАЦИЯ
         {
             if (DataGrid.Items.Count == 0)
             {
-                StackPanel2.Visibility = Visibility.Hidden;  
+                StackPanel2.Visibility = Visibility.Hidden;
             }
             else
             {
-                StackPanel2.Visibility = Visibility.Visible;    
+                StackPanel2.Visibility = Visibility.Visible;
             }
         }
 
@@ -327,10 +341,10 @@ namespace БД_АВТОРИЗАЦИЯ
                     case "Products":
                         var newProduct = new Products
                         {
-                            pName = "", 
-                            ptype = "", 
-                            pricePerUnit = 0m, 
-                            outputVolume = 0, 
+                            pName = "",
+                            ptype = "",
+                            pricePerUnit = 0m,
+                            outputVolume = 0,
                             shelflife = DateTime.Now
                         };
                         context.Products.Add(newProduct);
@@ -339,10 +353,10 @@ namespace БД_АВТОРИЗАЦИЯ
                     case "Ingredients":
                         var newIngredient = new Ingredients
                         {
-                            iName = "", 
-                            unitOfMeasurement = "", 
-                            pricePerUnit = 0m, 
-                            availableQuantity = 0 
+                            iName = "",
+                            unitOfMeasurement = "",
+                            pricePerUnit = 0m,
+                            availableQuantity = 0
                         };
                         context.Ingredients.Add(newIngredient);
                         break;
@@ -350,8 +364,8 @@ namespace БД_АВТОРИЗАЦИЯ
                     case "Suppliers":
                         var newSupplier = new Suppliers
                         {
-                            sName = "", 
-                            contactInformation = "" 
+                            sName = "",
+                            contactInformation = ""
                         };
                         context.Suppliers.Add(newSupplier);
                         break;
@@ -359,7 +373,7 @@ namespace БД_АВТОРИЗАЦИЯ
                     case "Orders":
                         var newOrder = new Orders
                         {
-                            orderDate = DateTime.Now, 
+                            orderDate = DateTime.Now,
                             condition = "Новый"
                         };
                         context.Orders.Add(newOrder);
@@ -368,10 +382,10 @@ namespace БД_АВТОРИЗАЦИЯ
                     case "OrderedProducts":
                         var newOrderedProduct = new OrderedProducts
                         {
-                            order_id = 1, 
-                            product_id = 1, 
-                            quantityOfProducts = 0,  
-                            price = 0m 
+                            order_id = 1,
+                            product_id = 1,
+                            quantityOfProducts = 0,
+                            price = 0m
                         };
                         context.OrderedProducts.Add(newOrderedProduct);
                         break;
@@ -379,21 +393,21 @@ namespace БД_АВТОРИЗАЦИЯ
                     case "ProductComposition":
                         var newProductComposition = new ProductСomposition
                         {
-                            product_id = 1, 
-                            ingredient_id = 1 
+                            product_id = 1,
+                            ingredient_id = 1
                         };
                         context.ProductСomposition.Add(newProductComposition);
                         context.SaveChanges();
-                        RefreshDataGrid(); 
+                        RefreshDataGrid();
                         break;
 
                     case "suppliedIngredients":
                         var newSuppliedIngredient = new suppliedIngredients
                         {
-                            supplier_id = 1, 
-                            ingredient_id = 1, 
-                            ingredient_quntity = 0, 
-                            price = 0m 
+                            supplier_id = 1,
+                            ingredient_id = 1,
+                            ingredient_quntity = 0,
+                            price = 0m
                         };
                         context.suppliedIngredients.Add(newSuppliedIngredient);
                         break;
@@ -420,11 +434,11 @@ namespace БД_АВТОРИЗАЦИЯ
                     {
                         foreach (var ingredient in ingredientsFromGrid)
                         {
-                            if (ingredient.id == 0) 
+                            if (ingredient.id == 0)
                             {
                                 context.Ingredients.Add(ingredient);
                             }
-                            else 
+                            else
                             {
                                 var existingIngredient = context.Ingredients.Find(ingredient.id);
                                 if (existingIngredient != null)
@@ -445,11 +459,11 @@ namespace БД_АВТОРИЗАЦИЯ
                     {
                         foreach (var product in productsFromGrid)
                         {
-                            if (product.id == 0) 
+                            if (product.id == 0)
                             {
                                 context.Products.Add(product);
                             }
-                            else   
+                            else
                             {
                                 var existingProduct = context.Products.Find(product.id);
                                 if (existingProduct != null)
@@ -470,11 +484,11 @@ namespace БД_АВТОРИЗАЦИЯ
                     {
                         foreach (var supplier in suppliersFromGrid)
                         {
-                            if (supplier.id == 0) 
+                            if (supplier.id == 0)
                             {
                                 context.Suppliers.Add(supplier);
                             }
-                            else 
+                            else
                             {
                                 var existingSupplier = context.Suppliers.Find(supplier.id);
                                 if (existingSupplier != null)
@@ -495,11 +509,11 @@ namespace БД_АВТОРИЗАЦИЯ
                     {
                         foreach (var productComposition in productCompositionFromGrid)
                         {
-                            if (productComposition.id == 0)   
+                            if (productComposition.id == 0)
                             {
                                 context.ProductСomposition.Add(productComposition);
                             }
-                            else 
+                            else
                             {
                                 var existingProductComposition = context.ProductСomposition.Find(productComposition.id);
                                 if (existingProductComposition != null)
@@ -520,11 +534,11 @@ namespace БД_АВТОРИЗАЦИЯ
                     {
                         foreach (var suppliedIngredient in suppliedIngredientsFromGrid)
                         {
-                            if (suppliedIngredient.id == 0) 
+                            if (suppliedIngredient.id == 0)
                             {
                                 context.suppliedIngredients.Add(suppliedIngredient);
                             }
-                            else 
+                            else
                             {
                                 var existingSuppliedIngredient = context.suppliedIngredients.Find(suppliedIngredient.id);
                                 if (existingSuppliedIngredient != null)
@@ -545,11 +559,11 @@ namespace БД_АВТОРИЗАЦИЯ
                     {
                         foreach (var orderedProduct in orderedProductsFromGrid)
                         {
-                            if (orderedProduct.id == 0) 
+                            if (orderedProduct.id == 0)
                             {
                                 context.OrderedProducts.Add(orderedProduct);
                             }
-                            else 
+                            else
                             {
                                 var existingOrderedProduct = context.OrderedProducts.Find(orderedProduct.id);
                                 if (existingOrderedProduct != null)
@@ -570,11 +584,11 @@ namespace БД_АВТОРИЗАЦИЯ
                     {
                         foreach (var order in ordersFromGrid)
                         {
-                            if (order.id == 0) 
+                            if (order.id == 0)
                             {
                                 context.Orders.Add(order);
                             }
-                            else 
+                            else
                             {
                                 var existingOrder = context.Orders.Find(order.id);
                                 if (existingOrder != null)
@@ -658,7 +672,7 @@ namespace БД_АВТОРИЗАЦИЯ
                 context.SaveChanges();
 
                 MessageBox.Show($"Запись с ID {deleteID} была успешно удалена.");
-                RefreshDataGrid(); 
+                RefreshDataGrid();
             }
         }
 
@@ -694,7 +708,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void ButtonFilter_Click(object sender, RoutedEventArgs e)
         {
-            var itemsSource = DataGrid.ItemsSource as IEnumerable<object>;           
+            var itemsSource = DataGrid.ItemsSource as IEnumerable<object>;
 
             string idFilter = TextBoxID.Text;
             string nameFilter = TextBoxName.Text;
@@ -711,27 +725,27 @@ namespace БД_АВТОРИЗАЦИЯ
                 {
                     if (item is ProductСomposition productComposition)
                     {
-                        matchesId = productComposition.product_id == id; 
+                        matchesId = productComposition.product_id == id;
                     }
                     else if (item is suppliedIngredients suppliedIngredient)
                     {
-                        matchesId = suppliedIngredient.ingredient_id == id; 
+                        matchesId = suppliedIngredient.ingredient_id == id;
                     }
                     else if (item is OrderedProducts orderedProduct)
                     {
-                        matchesId = orderedProduct.order_id == id; 
+                        matchesId = orderedProduct.order_id == id;
                     }
                     else if (item is Ingredients ingredient)
                     {
-                        matchesId = ingredient.id == id; 
+                        matchesId = ingredient.id == id;
                     }
                     else if (item is Suppliers supplier)
                     {
-                        matchesId = supplier.id == id; 
+                        matchesId = supplier.id == id;
                     }
                     else if (item is Products product)
                     {
-                        matchesId = product.id == id; 
+                        matchesId = product.id == id;
                     }
                     else if (item is Orders order)
                     {
@@ -824,23 +838,9 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void ButtonReport_Click(object sender, RoutedEventArgs e)
         {
-            var mainWindow = Window.GetWindow(this); 
+            var mainWindow = Window.GetWindow(this);
             var window = (MainWindow)mainWindow;
             window.MainFrame.Navigate(new ReportsPage());
-        }
-
-        private void TBNotification_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (TBNotification.Text == "")
-            {
-                border.Visibility = Visibility.Hidden;
-                TBNotification.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                border.Visibility = Visibility.Visible;
-                TBNotification.Visibility = Visibility.Visible;
-            }
-        }
-    }
+        }        
+    }        
 }

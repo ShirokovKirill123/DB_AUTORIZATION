@@ -58,6 +58,20 @@ namespace БД_АВТОРИЗАЦИЯ
             }
         }
 
+        private void TBNotification_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TBNotification.Text == "")
+            {
+                border.Visibility = Visibility.Hidden;
+                TBNotification.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                border.Visibility = Visibility.Visible;
+                TBNotification.Visibility = Visibility.Visible;
+            }
+        }
+
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             SideMenu.Visibility = SideMenu.Visibility == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;

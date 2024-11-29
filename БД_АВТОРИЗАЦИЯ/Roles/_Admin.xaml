@@ -16,8 +16,8 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="209"/>
-            <ColumnDefinition Width="400"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="209"/>
         </Grid.ColumnDefinitions>
 
         <StackPanel>
@@ -41,15 +41,27 @@
             </StackPanel>
         </StackPanel>
 
-            <DataGrid Name="DataGrid" Grid.Column="1" Margin="10,73,300,590" AutoGenerateColumns="False" ColumnWidth="*" Grid.ColumnSpan="2" IsReadOnly="False" VerticalAlignment="Stretch">
+            <DataGrid CanUserAddRows="False" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" x:Name="DataGrid" AutoGenerateColumns="False"  ColumnWidth="*" IsReadOnly="False" Padding="0,0,0,0">
                 <DataGrid.Resources>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                     </Style>
                 </DataGrid.Resources>
-            </DataGrid>
+            <DataGrid.Style>
+                <Style TargetType="DataGrid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Items.Count, ElementName=DataGrid}" Value="0">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Items.Count, ElementName=DataGrid}" Value="1">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Style>
+        </DataGrid>
 
-        <Grid Grid.Row="1" Grid.ColumnSpan="3" Background="#F5DEB3">
+            <Grid Grid.Row="1" Grid.ColumnSpan="3" Background="#F5DEB3">
             <TextBlock Text="Вы вошли как Администратор" 
                 FontSize="16" 
                 FontWeight="Bold" 
