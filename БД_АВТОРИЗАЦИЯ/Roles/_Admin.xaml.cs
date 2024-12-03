@@ -257,12 +257,7 @@ namespace БД_АВТОРИЗАЦИЯ
         {
             using (var context = new BakeryEntities5())
             {
-                var ordersList = context.Orders.ToList();
-
-                foreach (var order in ordersList)
-                {
-                    var orderContext = new OrderContext(order);
-                }
+                var ordersList = context.Orders.ToList();          
 
                 DataGrid.ItemsSource = ordersList;
                 currentTable = "Orders";
@@ -295,6 +290,7 @@ namespace БД_АВТОРИЗАЦИЯ
             var orderContext = new OrderContext(selectedOrder);
 
             orderContext.MarkAsCompleted();
+
             using (var context = new BakeryEntities5())
             {
                 context.Entry(selectedOrder).State = System.Data.Entity.EntityState.Modified;

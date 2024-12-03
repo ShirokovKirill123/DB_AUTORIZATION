@@ -41,22 +41,8 @@ namespace БД_АВТОРИЗАЦИЯ
             var ingredientStockNotifier = IngredientStockNotifier.Current;
             ingredientStockNotifier.AddObserver(_purchasingManagerObserver);
 
-            HideNotifyTextBox();
-        }
-
-        public void HideNotifyTextBox()
-        {
-            if (TBNotification.Text == "")
-            {
-                border.Visibility = Visibility.Hidden;
-                TBNotification.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                border.Visibility = Visibility.Visible;
-                TBNotification.Visibility = Visibility.Visible;
-            }
-        }
+            TBNotification_TextChanged(null, null);
+        }        
 
         private void TBNotification_TextChanged(object sender, TextChangedEventArgs e)
         {

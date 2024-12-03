@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using БД_АВТОРИЗАЦИЯ.State;
 using Bakery_Project;
 using БД_АВТОРИЗАЦИЯ;
+using System.Windows;
 
 namespace Bakery_Project.State
 {
@@ -32,17 +33,17 @@ namespace Bakery_Project.State
     {
         public void MarkAsNew(Orders order)
         {
-            Console.WriteLine($"Заказ {order.id} выполнен. Добавление невозможно");
+            MessageBox.Show($"Заказ {order.id} выполнен. Добавление невозможно");
         }
 
         public void MarkAsCompleted(Orders order)
         {
-            Console.WriteLine($"Заказ {order.id} уже выполнен.");
+            MessageBox.Show($"Заказ {order.id} уже выполнен.");
         }
 
         public void MarkAsCanceled(Orders order)
         {
-            Console.WriteLine($"Заказ {order.id} выполнен. Отмена невозможна");
+            MessageBox.Show($"Заказ {order.id} выполнен. Отмена невозможна");
         }
     }
 
@@ -50,17 +51,17 @@ namespace Bakery_Project.State
     {
         public void MarkAsNew(Orders order)
         {
-            Console.WriteLine($"Заказ {order.id} отменён. Добавление невозможно");
+            MessageBox.Show($"Заказ {order.id} отменён. Добавление невозможно");
         }
 
         public void MarkAsCompleted(Orders order)
         {
-            Console.WriteLine($"Заказ {order.id} отменён");
+            MessageBox.Show($"Заказ {order.id} отменён");
         }
 
         public void MarkAsCanceled(Orders order)
         {
-            Console.WriteLine($"Заказ {order.id} уже отменён");
+            MessageBox.Show($"Заказ {order.id} уже отменён");
         }
     }
 }
