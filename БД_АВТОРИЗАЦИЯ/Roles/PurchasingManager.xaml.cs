@@ -37,7 +37,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
             _purchasingManagerObserver = new PurchasingManagerObserver();
             this.DataContext = _purchasingManagerObserver;
-            var ingredientStockNotifier = IngredientStockNotifier.Current;
+            var ingredientStockNotifier = Manager.IngredientObserver;
             ingredientStockNotifier.AddObserver(_purchasingManagerObserver);
 
             TBNotification_TextChanged(null, null);

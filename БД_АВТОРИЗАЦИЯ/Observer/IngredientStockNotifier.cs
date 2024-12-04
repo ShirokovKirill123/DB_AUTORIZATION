@@ -34,7 +34,5 @@ namespace Bakery_Project.Observer
             string message = $"Предупреждение: {notification}";
             NotifyObservers(message);  
         }
-
-        public static IngredientStockNotifier Current { get; private set; } = new IngredientStockNotifier();
     }
 }

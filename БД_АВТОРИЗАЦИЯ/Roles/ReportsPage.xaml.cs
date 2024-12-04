@@ -41,7 +41,7 @@ namespace БД_АВТОРИЗАЦИЯ
         {
             ReportsComboBox.Items.Clear();
 
-            string userRole = Ordinator.Current.Role;
+            string userRole = Manager.User.Role;
 
             if (userRole == "Bakery Worker")
             {
@@ -216,7 +216,7 @@ namespace БД_АВТОРИЗАЦИЯ
             if (reportData.Any())
             {
                 var insufficientStockMessage = "Есть нехватка ингредиентов. Обратите внимание на отчёт о нехватке ингредиентов.";
-                var ingredientStockNotifier = IngredientStockNotifier.Current;
+                var ingredientStockNotifier = Manager.IngredientObserver;
                 ingredientStockNotifier.NotifyInsufficientStock(insufficientStockMessage);
             }
         }

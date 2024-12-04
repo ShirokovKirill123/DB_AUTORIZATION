@@ -10,7 +10,6 @@ namespace БД_АВТОРИЗАЦИЯ.State
 {
     public interface IOrderState
     {
-        void MarkAsNew(Orders order);
         void MarkAsCompleted(Orders order);
         void MarkAsCanceled(Orders order);
     }

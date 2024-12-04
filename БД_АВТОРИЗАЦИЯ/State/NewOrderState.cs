@@ -13,10 +13,6 @@ namespace Bakery_Project.State
 {
     public class NewOrderState : IOrderState
     {
-        public void MarkAsNew(Orders order)
-        {
-            order.condition = "Новый";
-        }
 
         public void MarkAsCompleted(Orders order)
         {
@@ -31,14 +27,9 @@ namespace Bakery_Project.State
 
     public class CompletedOrderState : IOrderState
     {
-        public void MarkAsNew(Orders order)
-        {
-            MessageBox.Show($"Заказ {order.id} выполнен. Добавление невозможно");
-        }
-
         public void MarkAsCompleted(Orders order)
         {
-            MessageBox.Show($"Заказ {order.id} уже выполнен.");
+            MessageBox.Show($"Заказ {order.id} уже выполнен");
         }
 
         public void MarkAsCanceled(Orders order)
@@ -49,14 +40,9 @@ namespace Bakery_Project.State
 
     public class CanceledOrderState : IOrderState
     {
-        public void MarkAsNew(Orders order)
-        {
-            MessageBox.Show($"Заказ {order.id} отменён. Добавление невозможно");
-        }
-
         public void MarkAsCompleted(Orders order)
         {
-            MessageBox.Show($"Заказ {order.id} отменён");
+            MessageBox.Show($"Заказ {order.id} отменён. Невозможно выполнить");
         }
 
         public void MarkAsCanceled(Orders order)

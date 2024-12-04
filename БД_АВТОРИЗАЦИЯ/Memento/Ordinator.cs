@@ -22,6 +22,5 @@ namespace БД_АВТОРИЗАЦИЯ.Хранитель_Memento_
             Username = memento.Username;
             Role = memento.Role;
         }
-        public static Ordinator Current { get; private set; } = new Ordinator();
     }
 }

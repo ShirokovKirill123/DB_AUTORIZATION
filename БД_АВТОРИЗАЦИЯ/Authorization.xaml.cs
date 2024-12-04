@@ -80,10 +80,10 @@ namespace Bakery_Project
 
                 if (user != null)
                 {
-                    Ordinator.Current.Username = username;
-                    Ordinator.Current.Role = user.title_of_role;
+                    Manager.User.Username = username;
+                    Manager.User.Role = user.title_of_role;
 
-                    _caretaker.Memento = Ordinator.Current.CreateMemento();           
+                    _caretaker.Memento = Manager.User.CreateMemento();           
 
                     SaveLoginToMemento();
 
