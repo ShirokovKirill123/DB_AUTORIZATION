@@ -61,7 +61,7 @@ namespace Bakery_Project
         {
             if (!string.IsNullOrEmpty(LoginTextBox.Text))
             {
-                //WatermarkText.Visibility = Visibility.Collapsed;
+                WatermarkText.Visibility = Visibility.Collapsed;
             }
             else
             {
