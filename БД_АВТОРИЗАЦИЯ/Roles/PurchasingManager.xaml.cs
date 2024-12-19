@@ -84,7 +84,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void Button_Ingredients_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new BakeryEntities5())
+            using (var context = new BakeryEntities6())
             {
                 var ingredientsList = context.Ingredients.ToList();
 
@@ -104,7 +104,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void Button_suppliedIngredients_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new BakeryEntities5())
+            using (var context = new BakeryEntities6())
             {
                 var suppliedIngredientsList = context.suppliedIngredients
                     .Include(si => si.Ingredients)
@@ -142,7 +142,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void Button_Suppliers_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new BakeryEntities5())
+            using (var context = new BakeryEntities6())
             {
                 var suppliersList = context.Suppliers.ToList();
 
@@ -160,7 +160,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void Button_Products_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new BakeryEntities5())
+            using (var context = new BakeryEntities6())
             {
                 var productsList = context.Products.ToList();
 
@@ -197,7 +197,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new BakeryEntities5())
+            using (var context = new BakeryEntities6())
             {
                 switch (currentTable)
                 {
@@ -256,7 +256,7 @@ namespace БД_АВТОРИЗАЦИЯ
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new BakeryEntities5())
+            using (var context = new BakeryEntities6())
             {
                 if (currentTable == "Ingredients")
                 {
@@ -380,7 +380,7 @@ namespace БД_АВТОРИЗАЦИЯ
                 return;
             }
 
-            using (var context = new BakeryEntities5())
+            using (var context = new BakeryEntities6())
             {
                 dynamic itemToDelete = null;
 

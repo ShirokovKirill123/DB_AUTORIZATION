@@ -74,7 +74,7 @@ namespace Bakery_Project
             string username = LoginTextBox.Text;
             string password = PasswordBox.Password;
 
-            using (var context = new BakeryEntities5())
+            using (var context = new BakeryEntities6())
             {
                 var user = context.Roles.FirstOrDefault(u => u.role_email == username && u.role_password == password);
 
