@@ -115,7 +115,7 @@ namespace БД_АВТОРИЗАЦИЯ
             if (string.IsNullOrWhiteSpace(selectedReport))
                 return;
 
-            using (var context = new BakeryEntities6())
+            using (var context = new BakeryEntities7())
             {
                 switch (selectedReport)
                 {
@@ -151,7 +151,7 @@ namespace БД_АВТОРИЗАЦИЯ
             }
         }
 
-        private void DisplayProducedProductsReport(BakeryEntities6 context)
+        private void DisplayProducedProductsReport(BakeryEntities7 context)
         {
             var reportData = context.Products
                 .Select(p => new
@@ -176,7 +176,7 @@ namespace БД_АВТОРИЗАЦИЯ
             ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Срок хранения", Binding = new Binding("Срок_Хранения") });
         }
 
-        private void DisplayInsufficientIngredientsReport(BakeryEntities6 context)
+        private void DisplayInsufficientIngredientsReport(BakeryEntities7 context)
         {
               const int minimumRequiredQuantity = 20;
 
@@ -221,7 +221,7 @@ namespace БД_АВТОРИЗАЦИЯ
             }
         }
 
-        private void DisplayOrderedProductsReport(BakeryEntities6 context)
+        private void DisplayOrderedProductsReport(BakeryEntities7 context)
         {
             var reportData = context.OrderedProducts
             .Include(op => op.Products)
@@ -251,7 +251,7 @@ namespace БД_АВТОРИЗАЦИЯ
         }
 
 
-        private void DisplayNecessaryPurchasesReport(BakeryEntities6 context)
+        private void DisplayNecessaryPurchasesReport(BakeryEntities7 context)
         {
             var reportData = context.Ingredients
                 .Where(i => (i.availableQuantity ?? 0) < 20) 
@@ -276,7 +276,7 @@ namespace БД_АВТОРИЗАЦИЯ
             ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Поставщик", Binding = new Binding("Поставщик") });
         }
 
-        private void DisplaySuppliesReport(BakeryEntities6 context)
+        private void DisplaySuppliesReport(BakeryEntities7 context)
         {
             var reportData = context.suppliedIngredients
            .Include(si => si.Suppliers)
@@ -299,7 +299,7 @@ namespace БД_АВТОРИЗАЦИЯ
             ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Цена", Binding = new Binding("Цена") });
         }
 
-        private void DisplayIngredientUsageReport(BakeryEntities6 context)
+        private void DisplayIngredientUsageReport(BakeryEntities7 context)
         {
             var reportData = context.Ingredients
             .Select(i => new
@@ -326,7 +326,7 @@ namespace БД_АВТОРИЗАЦИЯ
             ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Расход", Binding = new Binding("Расход") });
         }
 
-        private void DisplayInventoryStateReport(BakeryEntities6 context)
+        private void DisplayInventoryStateReport(BakeryEntities7 context)
         {
             var reportData = context.Ingredients
             .Select(i => new
@@ -349,7 +349,7 @@ namespace БД_АВТОРИЗАЦИЯ
             ReportsDataGrid.Columns.Add(new DataGridTextColumn { Header = "Стоимость запасов", Binding = new Binding("Стоимость_запасов") });
         }        
 
-        private void DisplayProfitReport(BakeryEntities6 context)
+        private void DisplayProfitReport(BakeryEntities7 context)
         {
             var reportData = context.Orders
            .Where(o => o.condition == "Выполнен")  
