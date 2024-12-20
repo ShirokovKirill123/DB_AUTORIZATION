@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Bakery_Project.State.NewOrderState" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>State\NewOrderState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Bakery_Project.State.CompletedOrderState" BaseTypeListCollapsed="true">
+    <Position X="11.5" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>State\NewOrderState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Bakery_Project.State.CanceledOrderState" BaseTypeListCollapsed="true">
+    <Position X="9" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>State\NewOrderState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Bakery_Project.State.OrderContext">
+    <Position X="7" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEIBAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAABA=</HashCode>
+      <FileName>State\OrderContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="БД_АВТОРИЗАЦИЯ.State.IOrderState">
+    <Position X="13.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>State\IOrderState.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
