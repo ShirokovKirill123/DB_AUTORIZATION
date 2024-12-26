@@ -269,6 +269,8 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="SQLQuery\DB.sql" />
+    <Content Include="SQLQuery\InsertDB.sql" />
     <Content Include="SQLQuery\requests.sql" />
   </ItemGroup>
   <ItemGroup />
